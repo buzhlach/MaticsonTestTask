@@ -100,6 +100,11 @@ namespace LoggerTools
         /// <param name="text">Текст лога.</param>
         public void Log(MessageType messageType,string text)
         {
+            if (text == null)
+            {
+                throw new ArgumentNullException(nameof(text));
+            }
+
             if (_textSource == null)
             {
                 DbLog(messageType, text);
@@ -154,10 +159,6 @@ namespace LoggerTools
         /// <param name="text">Текст лога.</param>
         private void TextLog(MessageType messageType, string text)
         {
-            if(text == null)
-            {
-                throw new ArgumentNullException(nameof(text));
-            }
 
             try
             {
